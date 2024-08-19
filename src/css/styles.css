@@ -1,1 +1,4 @@
 @import url("./reset.css");
+@import url("../../node_modules/izitoast/dist/css/iziToast.min.css");
+@import "../../node_modules/simplelightbox/dist/simple-lightbox.min.css";
+@import url("./section.css");

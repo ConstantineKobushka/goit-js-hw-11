@@ -4,11 +4,35 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Homework 11</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <!-- <load ="partials/header.html" /> -->
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Welcome to Gallery</h1>
+        <form class="form">
+          <input
+            class="form-input"
+            type="text"
+            name="search"
+            placeholder="Search images..."
+            autofocus
+          />
+          <button class="form-btn" type="submit">Search</button>
+        </form>
+
+        <ul class="gallery-list"></ul>
+
+        <div class="loader-box">
+          <span class="loader"></span>
+        </div>
+      </div>
+    </section>
 
     <script type="module" src="./main.js"></script>
   </body>
