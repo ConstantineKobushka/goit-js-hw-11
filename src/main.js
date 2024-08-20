@@ -28,6 +28,7 @@ function onFormSubmit(e) {
     return;
   }
 
+  gallery.innerHTML = '';
   loaderBox.classList.add('loader-box-active');
 
   gethPhotos(searchInputValue)
