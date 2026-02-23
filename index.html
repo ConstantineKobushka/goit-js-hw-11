@@ -1,42 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/goit-js-hw-11/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 11</title>
+    <title>JS-Homework-11</title>
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700"
       rel="stylesheet"
     />
-    
-    <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-f33cd494.js">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-6758f56d.css">
+    <script type="module" crossorigin src="/goit-js-hw-11/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-DlULlCeh.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-CnFXzBkv.css">
   </head>
   <body>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">Welcome to Gallery</h1>
-        <form class="form">
-          <input
-            class="form-input"
-            type="text"
-            name="search"
-            placeholder="Search images..."
-            autofocus
-          />
-          <button class="form-btn" type="submit">Search</button>
-        </form>
+    <main>
+      <section class="gallery">
+        <div class="container">
+          <h1 class="gallery-title">Welcome to Gallery</h1>
+          <form class="gallery-form">
+            <input
+              class="gallery-form-input"
+              type="text"
+              name="search"
+              placeholder="Search images..."
+              autofocus
+            />
+            <button class="gallery-form-btn" type="submit">Search</button>
+          </form>
 
-        <ul class="gallery-list"></ul>
+          <div class="gallery-loader"></div>
 
-        <div class="loader-box">
-          <span class="loader"></span>
+          <ul class="gallery-list"></ul>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    
   </body>
 </html>
