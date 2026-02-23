@@ -1,36 +1,10 @@
-html {
-  box-sizing: border-box;
-}
-*,
-*:after,
-*:before {
-  box-sizing: inherit;
-}
-
-.section {
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.5;
-  font-style: normal;
-  color: #2e2f42;
-  position: relative;
-}
-
-.container {
-  max-width: 1752px;
-  padding: 36px 156px;
-  margin: 0 auto;
-}
-
-.title {
+.gallery-title {
   font-size: 32px;
   font-weight: 500;
   margin-bottom: 36px;
   text-align: center;
 }
-
-.form {
+.gallery-form {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -38,7 +12,7 @@ html {
   gap: 8px;
   margin-bottom: 32px;
 }
-.form-input {
+.gallery-form-input {
   width: 272px;
   height: 40px;
   border-radius: 4px;
@@ -48,7 +22,7 @@ html {
   color: #2e2f42;
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.form-input::placeholder {
+.gallery-form-input::placeholder {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -57,13 +31,13 @@ html {
   letter-spacing: 0.64px;
   color: #808080;
 }
-.form-input:hover {
+.gallery-form-input:hover {
   border: 1px solid #000;
 }
-.form-input:focus {
+.gallery-form-input:focus {
   border: 1px solid #4e75ff;
 }
-.form-btn {
+.gallery-form-btn {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -75,19 +49,13 @@ html {
   min-width: 91px;
   height: 40px;
   border-radius: 8px;
+  border: none;
   background-color: #4e75ff;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.form-btn:hover {
+.gallery-form-btn:hover {
   background-color: #6c8cff;
 }
-
-.iziToast > .iziToast-close {
-  background-image: url(../img/close-btn.svg) !important;
-  background-size: 16px;
-  opacity: 1;
-}
-
 .gallery-list {
   display: flex;
   justify-content: center;
@@ -118,52 +86,63 @@ html {
   line-height: 16px; /* 133.333% */
   letter-spacing: 0.48px;
 }
-
-.loader-box {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
-}
-.loader-box-active {
-  display: block;
-}
-.loader {
+.gallery-loader {
   position: relative;
+  display: none;
   width: 48px;
   height: 48px;
-  display: inline-block;
-  border: 3px solid;
-  border-color: #de3500 #0000 #de3500 #0000;
+  margin: 0 auto;
   border-radius: 50%;
-  box-sizing: border-box;
-  animation: 1s rotate linear infinite;
+  border-top: 4px solid #4e75ff;
+  border-right: 4px solid transparent;
+  animation: rotation 1s linear infinite;
 }
-.loader:before,
-.loader:after {
+.gallery-loader.active {
+  display: block;
+}
+.gallery-loader::after {
   content: "";
-  top: 0;
-  left: 0;
   position: absolute;
-  border: 10px solid transparent;
-  border-bottom-color: #de3500;
-  transform: translate(-10px, 19px) rotate(-35deg);
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-bottom: 4px solid #ff3d00;
+  border-left: 4px solid transparent;
 }
-.loader:after {
-  border-color: #de3500 #0000 #0000 #0000;
-  transform: translate(32px, 3px) rotate(-35deg);
-}
-@keyframes rotate {
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
   100% {
     transform: rotate(360deg);
   }
 }
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    padding: 0 50px;
-  }
+.iziToast-message {
+  max-width: 250px;
+}
+.iziToast > .iziToast-body .iziToast-texts {
+  display: flex;
+  align-items: center;
+}
+.iziToast > .iziToast-body .iziToast-title {
+  margin-bottom: 10px;
+}
+.iziToast > .iziToast-close {
+  width: 12px;
+  height: 12px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  background-image: url("../img/izitoast-close-icon.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.iziToast > .iziToast-progressbar {
+  background-color: #ffbebe;
 }
 
 @media only screen and (max-width: 768px) {
@@ -173,9 +152,6 @@ html {
 }
 
 @media only screen and (max-width: 530px) {
-  .container {
-    padding: 0 15px;
-  }
   .gallery-item {
     width: 100%;
   }

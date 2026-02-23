@@ -1,4 +1,8 @@
+/* Common styles */
 @import url("./reset.css");
-@import url("../../node_modules/izitoast/dist/css/iziToast.min.css");
-@import "../../node_modules/simplelightbox/dist/simple-lightbox.min.css";
-@import url("./section.css");
+@import url("./base.css");
+@import url("izitoast/dist/css/iziToast.min.css");
+@import url("simplelightbox/dist/simple-lightbox.min.css");
+
+/* Sections style */
+@import url("./gallery.css");

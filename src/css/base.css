@@ -1,0 +1,40 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+.body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  color: #2e2f42;
+  position: relative;
+}
+
+.gallery {
+  position: relative;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0 156px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    padding: 0 50px;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .container {
+    padding: 0 15px;
+  }
+}

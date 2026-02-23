@@ -1,72 +1,73 @@
 import iziToast from 'izitoast';
 
-import { gethPhotos } from './js/pixabay-api';
-import { createGalleryElement } from './js/render-functions';
-import SimpleLightbox from 'simplelightbox';
+import {
+  createGallery,
+  clearGallery,
+  showLoader,
+  hideLoader,
+} from './js/render-functions';
 
-import errorMessage from './img/error-massage.svg';
+import { getImagesByQuery } from './js/pixabay-api';
 
-const form = document.querySelector('.form');
-const gallery = document.querySelector('.gallery-list');
-const loaderBox = document.querySelector('.loader-box');
+import iziToastErrorIcon from './img/izitoast-error-icon.svg';
 
-form.addEventListener('submit', onFormSubmit);
+const galleryFormEl = document.querySelector('.gallery-form');
+const galleryEl = document.querySelector('.gallery-list');
+const galleryLoaderEl = document.querySelector('.gallery-loader');
 
-const simpleLightbox = new SimpleLightbox('.gallery-list a', {
-  captionDelay: 250,
-  captionPosition: 'bottom',
-  captionsData: 'alt',
-  overlayOpacity: 1,
-});
+galleryFormEl.addEventListener('submit', onGalleryFormSubmit);
 
-function onFormSubmit(e) {
-  e.preventDefault();
+function onGalleryFormSubmit(event) {
+  event.preventDefault();
 
-  const searchInputValue = form.elements.search.value.trim();
+  const searchValue = event.target.elements.search.value.trim();
 
-  if (searchInputValue.trim() === '') {
+  if (searchValue === '') {
+    showErrorToast(
+      'The input field cannot be empty. Please enter a search keyword.'
+    );
     return;
   }
 
-  gallery.innerHTML = '';
-  loaderBox.classList.add('loader-box-active');
+  clearGallery(galleryEl);
+  showLoader(galleryLoaderEl);
 
-  gethPhotos(searchInputValue)
-    .then(data => {
-      loaderBox.classList.add('loader-box-active');
+  getImagesByQuery(searchValue)
+    .then(({ data }) => {
       if (data.hits.length === 0) {
-        iziToast.show({
-          message:
-            'Sorry, there are no images matching your search query. Please, try again!',
-          position: 'topRight',
-          backgroundColor: '#ef4040',
-          titleColor: '#fff',
-          titleSize: '16px',
-          titleLineHeight: '24px',
-          messageColor: '#fff',
-          messageSize: '16px',
-          messageLineHeight: '24px',
-          iconUrl: errorMessage,
-          maxWidth: '385px',
-          timeout: 5000,
-        });
-        gallery.innerHTML = '';
-        form.reset();
-        form.elements.search.focus();
+        showErrorToast(
+          'Sorry, there are no images matching your search query. Please, try again!'
+        );
+
+        galleryFormEl.reset();
+        galleryFormEl.elements.search.focus();
         return;
       }
-      const galleryCardsTemplate = data.hits
-        .map(imgInfo => createGalleryElement(imgInfo))
-        .join('');
-      gallery.innerHTML = galleryCardsTemplate;
-      simpleLightbox.refresh();
-      form.reset();
-      form.elements.search.focus();
+
+      createGallery(data.hits, galleryEl);
     })
-    .catch(err => {
-      console.log(err);
+    .catch(error => {
+      console.log(error.message);
     })
     .finally(() => {
-      loaderBox.classList.remove('loader-box-active');
+      hideLoader(galleryLoaderEl);
+      galleryFormEl.reset();
+      galleryFormEl.elements.search.focus();
     });
+}
+
+export function showErrorToast(message) {
+  iziToast.error({
+    title: 'Error',
+    titleColor: '#ffffff',
+    message,
+    messageColor: '#ffffff',
+    maxWidth: '385px',
+    iconUrl: iziToastErrorIcon,
+    position: 'topRight',
+    closeOnEscape: true,
+    backgroundColor: '#ef4040',
+    progressBarColor: '#b51b1b',
+    timeout: 300000,
+  });
 }
