@@ -38,9 +38,6 @@ function onGalleryFormSubmit(event) {
         showErrorToast(
           'Sorry, there are no images matching your search query. Please, try again!'
         );
-
-        galleryFormEl.reset();
-        galleryFormEl.elements.search.focus();
         return;
       }
 
@@ -68,6 +65,6 @@ export function showErrorToast(message) {
     closeOnEscape: true,
     backgroundColor: '#ef4040',
     progressBarColor: '#b51b1b',
-    timeout: 300000,
+    timeout: 3000,
   });
 }
