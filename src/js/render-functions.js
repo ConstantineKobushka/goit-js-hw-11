@@ -48,7 +48,7 @@ const createGalleryItem = ({
 
 export const createGallery = (images, container) => {
   const markup = images.map(createGalleryItem).join('');
-  container.innerHTML = markup;
+  container.insertAdjacentHTML('beforeend', markup);
   simpleLightbox.refresh();
 };
 
